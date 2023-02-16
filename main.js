@@ -5,6 +5,7 @@ const productos =[
     {nombre: "Empanadas", precio: 200, stock: 200, vendido:false}
 ]
 
+
 const cliente=[]
 const compra= []
 
@@ -34,26 +35,24 @@ datosInicio()
 if(cliente.length>= 1){
 menu()
 
-let seleccion = prompt("Elige de nuestros ricos productos disponibles con sabor venezolano: \n 1 Tequeños \n 2 Mandocas \n 3 Cachapas \n 4 Empanadas \nEscribe 0 para cancelar ") 
+let seleccion = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas \n 0 para finalizar")
+
+let nombreProducto= seleccion
+const prodElegido= productos.find(el => el.nombre == nombreProducto)
 
 
 while (seleccion !="0"){
-    let precioProd=0
     switch (seleccion) {
-        case "1":
-            precioProd=productos[0].precio
+        case "tequeños":
             break;
             
-        case "2":
-            precioProd=productos[1].precio
+        case "mandocas":
             break;
         
-        case "3":
-            precioProd=productos[2].precio
+        case "cachapas":
             break;
         
-        case "4":
-            precioProd=productos[3].precio
+        case "empanadas":
             break;
         
         default:
@@ -61,12 +60,12 @@ while (seleccion !="0"){
             break;
     }
     let unidades=parseInt(prompt("Cuantas unidades llevas?"))
-    compra.push({productos, unidades, precioProd})
-    seleccion = prompt("Elige de nuestros ricos productos disponibles con sabor venezolano: \n 1 Tequeños \n 2 Mandocas \n 3 Cachapas \n 4 Empanadas \nEscribe 0 para finalizar \n 9 para ver su compra")
+    compra.push({prodElegido, unidades})
+    seleccion = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas \n 0 para finalizar \n 9 para ver su compra")
 
     if(seleccion=="9"){
         compra.forEach((compraFinal) =>{
-             alert(`producto: ${compraFinal.productos.nombre}, unidades: ${compraFinal.unidades} y el total pagar por cada producto seleccionado seria ${compraFinal.unidades * compraFinal.precioProd}`)
+             alert(`producto: ${compraFinal.prodElegido.nombre}, unidades: ${compraFinal.unidades} y el total pagar por el producto seleccionado seria ${compraFinal.unidades * compraFinal.prodElegido.precio}`)
         })
             alert("Gracias por preferirnos!")
             break;
