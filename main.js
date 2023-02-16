@@ -35,14 +35,18 @@ datosInicio()
 if(cliente.length>= 1){
 menu()
 
-let seleccion = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas \n 0 para finalizar")
+let seleccion= prompt("¿Deseas comenzar la compra? \n si - para comenzar \n 0 - para cancelar")
 
-let nombreProducto= seleccion
+while(seleccion=="si"){
+
+let nombreProducto = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas")
+
 const prodElegido= productos.find(el => el.nombre == nombreProducto)
 
 
-while (seleccion !="0"){
-    switch (seleccion) {
+while (nombreProducto !="0"){
+    
+    switch (nombreProducto) {
         case "tequeños":
             break;
             
@@ -60,20 +64,24 @@ while (seleccion !="0"){
             break;
     }
     let unidades=parseInt(prompt("Cuantas unidades llevas?"))
-    compra.push({prodElegido, unidades})
-    seleccion = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas \n 0 para finalizar \n 9 para ver su compra")
+    prodElegido.cantidad = unidades
+    console.log(prodElegido)
+    compra.push({prodElegido})
+    seleccion = prompt("¿Deseas continuar la compra? \n si - para elegir otro producto \n 9 - para ver el carrito \n 0 - para cancelar")
+    nombreProducto = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas")
+}
+}
 
-    if(seleccion=="9"){
+if(seleccion=="9"){
         compra.forEach((compraFinal) =>{
-             alert(`producto: ${compraFinal.prodElegido.nombre}, unidades: ${compraFinal.unidades} y el total pagar por el producto seleccionado seria ${compraFinal.unidades * compraFinal.prodElegido.precio}`)
+             alert(`producto: ${compraFinal.prodElegido.nombre}, unidades: ${compraFinal.prodElegido.unidades} y el total pagar por el producto seleccionado seria ${compraFinal.prodElegido.unidades * compraFinal.prodElegido.precio}`)
         })
             alert("Gracias por preferirnos!")
-            break;
     }
     
-}
 
 if(seleccion=="0"){
     ("Su compra fue cancelada")
 }
+
 }
