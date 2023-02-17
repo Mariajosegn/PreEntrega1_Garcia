@@ -33,19 +33,24 @@ function menu(){
 let bienvenida=alert("Bienvenido/a a Mas que Sabor")
 datosInicio()
 if(cliente.length>= 1){
-menu()
 
 let seleccion= prompt("¿Deseas comenzar la compra? \n si - para comenzar \n 0 - para cancelar")
 
-while(seleccion=="si"){
+while(seleccion!="si" && seleccion!="0"){
+    alert("Por favor ingresa una opcion válida")
+    seleccion= prompt("¿Deseas comenzar la compra? \n si - para comenzar \n 0 - para cancelar")
+}
+
+if(seleccion=="si"){
+    menu()
+} else if(seleccion=="0"){
+    alert("Su compra fue cancelada")
+}
+
+while (seleccion ==="si"){
 
 let nombreProducto = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas")
-
 const prodElegido= productos.find(el => el.nombre == nombreProducto)
-
-
-while (nombreProducto !="0"){
-    
     switch (nombreProducto) {
         case "tequeños":
             break;
@@ -64,24 +69,17 @@ while (nombreProducto !="0"){
             break;
     }
     let unidades=parseInt(prompt("Cuantas unidades llevas?"))
-    prodElegido.cantidad = unidades
-    console.log(prodElegido)
-    compra.push({prodElegido})
+    // prodElegido.cantidad = unidades
+    // console.log(prodElegido)
+    compra.push({prodElegido, unidades})
     seleccion = prompt("¿Deseas continuar la compra? \n si - para elegir otro producto \n 9 - para ver el carrito \n 0 - para cancelar")
-    nombreProducto = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas")
-}
-}
 
-if(seleccion=="9"){
+while(seleccion==="9"){
         compra.forEach((compraFinal) =>{
-             alert(`producto: ${compraFinal.prodElegido.nombre}, unidades: ${compraFinal.prodElegido.unidades} y el total pagar por el producto seleccionado seria ${compraFinal.prodElegido.unidades * compraFinal.prodElegido.precio}`)
-        })
+            alert(`producto: ${compraFinal.prodElegido.nombre}, unidades: ${compraFinal.unidades} y el total pagar por el producto seleccionado seria ${compraFinal.unidades * compraFinal.prodElegido.precio}`)
             alert("Gracias por preferirnos!")
+        })
     }
-    
-
-if(seleccion=="0"){
-    ("Su compra fue cancelada")
+} 
 }
 
-}
