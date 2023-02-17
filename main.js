@@ -1,8 +1,8 @@
 const productos =[
-    {nombre: "Tequeños", precio: 100, stock: 200, vendido:false},
-    {nombre: "Mandocas", precio: 150, stock: 180, vendido:false},
-    {nombre: "Cachapas", precio: 800, stock: 100, vendido:false},
-    {nombre: "Empanadas", precio: 200, stock: 200, vendido:false}
+    {nombre: "tequeños", precio: 100, stock: 200, vendido:false},
+    {nombre: "mandocas", precio: 150, stock: 180, vendido:false},
+    {nombre: "cachapas", precio: 800, stock: 100, vendido:false},
+    {nombre: "empanadas", precio: 200, stock: 200, vendido:false}
 ]
 
 
@@ -74,7 +74,7 @@ const prodElegido= productos.find(el => el.nombre == nombreProducto)
     compra.push({prodElegido, unidades})
     seleccion = prompt("¿Deseas continuar la compra? \n si - para elegir otro producto \n 9 - para ver el carrito \n 0 - para cancelar")
 
-while(seleccion==="9"){
+if(seleccion==="9"){
         compra.forEach((compraFinal) =>{
             alert(`producto: ${compraFinal.prodElegido.nombre}, unidades: ${compraFinal.unidades} y el total pagar por el producto seleccionado seria ${compraFinal.unidades * compraFinal.prodElegido.precio}`)
             alert("Gracias por preferirnos!")
