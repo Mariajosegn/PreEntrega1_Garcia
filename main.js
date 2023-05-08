@@ -1,85 +1,82 @@
-const productos =[
-    {nombre: "tequeños", precio: 100, stock: 200, vendido:false},
-    {nombre: "mandocas", precio: 150, stock: 180, vendido:false},
-    {nombre: "cachapas", precio: 800, stock: 100, vendido:false},
-    {nombre: "empanadas", precio: 200, stock: 200, vendido:false}
-]
+let bienvenida=alert("Bienvenido/a a Mas que Sabor");
+let ingresoNombre=prompt("Ingresa tu nombre");
+let ingresoDireccion=prompt("Ingresa la direccion en la que será entregado el pedido (si es edificio, recuerda ingresar el apto)");
 
-
-const cliente=[]
-const compra= []
-
-
-function datosInicio(){
-    let ingresoNombre=prompt("Ingresa tu nombre")
-    let ingresoDireccion=prompt("Ingresa la direccion en la que será entregado el pedido (si es edificio, recuerda ingresar el piso")
-    if((ingresoNombre != "") && (ingresoDireccion != "")){
-        cliente.push(ingresoNombre)
-        cliente.push(ingresoDireccion)
-        alert("Bienvenido a Mas que Sabor!, su nombre y su direccion fueron registrados respectivamente como: " + cliente.join("\n"))
-        }
-        else{
-            alert("ERROR: recargue la pagina e ingrese los datos solicitados")
-        }
+if ((ingresoNombre != "") && (ingresoDireccion != "")){
+    alert("hola "+ ingresoNombre + "!" + "Tu pedido será enviado a: " + ingresoDireccion)
+}else{
+    alert("ERROR: complete los campos indicados")
 }
 
+const tequeños= 100
+const mandocas= 150
+const cachapas= 800
+const empanadas= 200
+let precioFinal = 0
 
-function menu(){
-    alert("A continuacion los productos que conforman nuestro menú")
-    let menuProductos= productos.map(productos => productos.nombre + " " + productos.precio +"$")
-    alert(menuProductos.join(" - "))
+function multiplicar(valor1, valor2){
+    let resultado=valor1*valor2;
+    return resultado
 }
 
-let bienvenida=alert("Bienvenido/a a Mas que Sabor")
-datosInicio()
-if(cliente.length>= 1){
+let seleccion = prompt("Elige de nuestros ricos productos disponibles con sabor venezolano: \n 1 Tequeños \n 2 Mandocas \n 3 Cachapas \n 4 Empanadas \nEscribe 0 para finalizar");
 
-let seleccion= prompt("¿Deseas comenzar la compra? \n si - para comenzar \n 0 - para cancelar")
 
-while(seleccion!="si" && seleccion!="0"){
-    alert("Por favor ingresa una opcion válida")
-    seleccion= prompt("¿Deseas comenzar la compra? \n si - para comenzar \n 0 - para cancelar")
-}
-
-if(seleccion=="si"){
-    menu()
-} else if(seleccion=="0"){
-    alert("Su compra fue cancelada")
-}
-
-while (seleccion ==="si"){
-
-let nombreProducto = prompt("ingrese el nombre del producto deseado \ntequeños \nmandocas \ncachapas \nempanadas")
-const prodElegido= productos.find(el => el.nombre == nombreProducto)
-    switch (nombreProducto) {
-        case "tequeños":
+while (seleccion !="0"){
+    let precioProd
+    switch (seleccion) {
+        case "1":
+            let cantidadTequeños = parseInt( prompt("ingrese cuantas unidades"));
+            if ((cantidadTequeños > 0) && (cantidadTequeños != "")){
+                precioProd = multiplicar(cantidadTequeños,tequeños)
+                precioFinal = parseInt(precioFinal + precioProd) 
+            alert("se agregó " + cantidadTequeños + " tequeños y el precio final es " + precioFinal)
+            }
+            else{
+                alert("campo invalido, agregue la cantidad o escriba 0 para finalizar")
+            }
             break;
-            
-        case "mandocas":
-            break;
-        
-        case "cachapas":
-            break;
-        
-        case "empanadas":
-            break;
-        
+
+        case "2":
+            let cantidadMandocas = parseInt( prompt("ingrese cuantas unidades"));
+            if ((cantidadMandocas > 0) && (cantidadMandocas != "")){
+                precioProd = multiplicar(cantidadMandocas,mandocas)
+                precioFinal = parseInt(precioFinal + precioProd) 
+            alert("se agregó " + cantidadMandocas + " mandocas y el precio final es " + precioFinal)
+                }
+                else{
+                    alert("campo invalido, agregue la cantidad o escriba 0 para finalizar")
+                }
+                break;
+
+
+        case "3":
+            let cantidadCachapas = parseInt( prompt("Las cachapas son rellena con queso, ingrese cuantas unidades"));
+            if ((cantidadCachapas > 0) && (cantidadCachapas != "")){
+                precioProd = multiplicar(cantidadCachapas,cachapas)
+                precioFinal = parseInt(precioFinal + precioProd) 
+            alert("se agregó " + cantidadCachapas + " cachapas y el precio final es " + precioFinal)
+                }
+                else{
+                    alert("campo invalido, agregue la cantidad o escriba 0 para finalizar")
+                }
+                break;
+
+        case "4":
+            let cantidadEmpanadas = parseInt( prompt("Las empanadas son rellenas de carne mechada, ingrese cuantas unidades"));
+            if ((cantidadEmpanadas > 0) && (cantidadEmpanadas != "")){
+                precioProd = multiplicar(cantidadEmpanadas,empanadas)
+                precioFinal = parseInt(precioFinal + precioProd) 
+            alert("se agregó " + cantidadEmpanadas + " empanadas y el precio final es " + precioFinal)
+                }
+                else{
+                    alert("campo invalido, agregue la cantidad o escriba 0 para finalizar")
+                }
+                break;
+
         default:
-            alert("Opcion inválida")
+            alert("Orden vacia")
             break;
     }
-    let unidades=parseInt(prompt("Cuantas unidades llevas?"))
-    // prodElegido.cantidad = unidades
-    // console.log(prodElegido)
-    compra.push({prodElegido, unidades})
-    seleccion = prompt("¿Deseas continuar la compra? \n si - para elegir otro producto \n 9 - para ver el carrito \n 0 - para cancelar")
-
-if(seleccion==="9"){
-        compra.forEach((compraFinal) =>{
-            alert(`producto: ${compraFinal.prodElegido.nombre}, unidades: ${compraFinal.unidades} y el total pagar por el producto seleccionado seria ${compraFinal.unidades * compraFinal.prodElegido.precio}`)
-            alert("Gracias por preferirnos!")
-        })
-    }
-} 
+seleccion = prompt("Elige de nuestros ricos productos disponibles con sabor venezolano: \nTequeños \nMandocas \nCachapas \nEmpanadas \nEscribe 0 para finalizar");
 }
-
